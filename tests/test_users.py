@@ -56,9 +56,9 @@ def test_read_users(client):
     assert response.json() == {'users': []}
 
 
-def test_put_wrong_user(client, user, token):
+def test_put_wrong_user(client, other_user, token):
     response = client.put(
-        f'/users/{user.id + 1}',
+        f'/users/{other_user.id}',
         headers={'Authorization': f'Bearer {token}'},
         json={
             'password': '123',
@@ -92,9 +92,9 @@ def test_update_user(client, user, token):
     }
 
 
-def test_delete_wrong_user(client, user, token):
+def test_delete_wrong_user(client, other_user, token):
     response = client.delete(
-        f'/users/{user.id + 1}',
+        f'/users/{other_user.id}',
         headers={'Authorization': f'Bearer {token}'},
     )
 
